@@ -26,7 +26,7 @@ btnSearch.addEventListener('click', e => {
     searchInput = input.value.trim();
     // refs.btnSearch.classList.add('is-hidden');
   if (!searchInput) {
-    clearGallery();
+    clearPage();
     return;
   } else {
       pixabayAPI(searchInput, page, perPage)
@@ -35,8 +35,7 @@ btnSearch.addEventListener('click', e => {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
-        clearGallery();
-        btnLoad.style.display = 'none';
+        clearPage();
         return;
       } else {
         createGallery(data.hits);
@@ -76,6 +75,7 @@ btnLoad.addEventListener('click', () => {
       .catch(error => console.log(error));
 });
 
-function clearGallery() {
+function clearPage() {
   gallery.innerHTML = '';
+  btnLoad.style.display = 'none';
 }
