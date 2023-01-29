@@ -19,12 +19,13 @@ let page = 0;
 let perPage = 40;
 let searchInput = refs.input.value.trim();
 
+
 refs.btnSearch.addEventListener('click', e => {
   e.preventDefault();
   page = 1;
   searchInput = refs.input.value.trim();
   if (!searchInput) {
-    cleanGallery();
+    // cleanGallery();
     return;
   } else {
       pixabayAPI(searchInput, page, perPage)
@@ -33,7 +34,7 @@ refs.btnSearch.addEventListener('click', e => {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
-        clearGallery();
+        // clearGallery();
         return;
       } else {
         createGallery(data.hits);
@@ -60,11 +61,11 @@ refs.btnLoad.addEventListener('click', () => {
         .then(data => {
             createGallery(data.hits);
             gallerySimpleLightbox.refresh();
-            let totalPages = data.totalHits / perPage;
-            if (page > totalPages) {
-                Notiflix.Notify.info(
-                  "We're sorry, but you've reached the end of search results."
-                ); 
+            // let totalPages = data.totalHits / perPage;
+            if (page > data.totalHits / perPage) {
+              Notiflix.Notify.info(
+                "We're sorry, but you've reached the end of search results."
+              );
             }
       })
       .catch(error => console.log(error));
