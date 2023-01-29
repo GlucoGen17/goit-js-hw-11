@@ -19,11 +19,13 @@ let page = 0;
 let perPage = 40;
 let searchInput = refs.input.value.trim();
 
+refs.btnLoad.style.display = "none";
 
 refs.btnSearch.addEventListener('click', e => {
   e.preventDefault();
   page = 1;
-  searchInput = refs.input.value.trim();
+    searchInput = refs.input.value.trim();
+    // refs.btnSearch.classList.add('is-hidden');
   if (!searchInput) {
     clearGallery();
     return;
@@ -40,6 +42,8 @@ refs.btnSearch.addEventListener('click', e => {
         createGallery(data.hits);
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
         gallerySimpleLightbox.refresh();
+        refs.btnLoad.style.display = "";
+          
         const { height: cardHeight } = document
           .querySelector('.gallery')
           .firstElementChild.getBoundingClientRect();
