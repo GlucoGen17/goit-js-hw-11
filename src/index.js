@@ -38,6 +38,7 @@ btnSearch.addEventListener('click', e => {
         clearPage();
         return;
       } else {
+        clearPage();
         createGallery(data.hits);
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
         gallerySimpleLightbox.refresh();
@@ -65,7 +66,7 @@ btnLoad.addEventListener('click', () => {
         .then(data => {
             createGallery(data.hits);
             gallerySimpleLightbox.refresh();
-            if (page >= (data.totalHits / perPage)) {
+            if (page >= Math.ceil(data.totalHits / perPage)) {
               Notiflix.Notify.info(
                 "We're sorry, but you've reached the end of search results."
               );
