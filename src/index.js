@@ -5,26 +5,25 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { pixabayAPI } from './js/FetchPixabay';
 import { createGallery } from './js/Gallery';
 
-refs = {
-  form: document.querySelector('.search-form'),
-  input: document.querySelector('.search-form-input'),
-  gallery: document.querySelector('.gallery'),
-  btnSearch: document.querySelector('.search-form-button'),
-  btnLoad: document.querySelector('.load-more'),
-};
+
+const input = document.querySelector('.search-form-input');
+const igallery = document.querySelector('.gallery');
+const ibtnSearch = document.querySelector('.search-form-button');
+const ibtnLoad = document.querySelector('.load-more');
+
 
 let gallerySimpleLightbox = new SimpleLightbox('.gallery a');
 
 let page = 0;
 let perPage = 40;
-let searchInput = refs.input.value.trim();
+let searchInput = input.value.trim();
 
-refs.btnLoad.style.display = "none";
+btnLoad.style.display = "none";
 
-refs.btnSearch.addEventListener('click', e => {
+btnSearch.addEventListener('click', e => {
   e.preventDefault();
   page = 1;
-    searchInput = refs.input.value.trim();
+    searchInput = input.value.trim();
     // refs.btnSearch.classList.add('is-hidden');
   if (!searchInput) {
     clearGallery();
@@ -42,7 +41,7 @@ refs.btnSearch.addEventListener('click', e => {
         createGallery(data.hits);
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
         gallerySimpleLightbox.refresh();
-        refs.btnLoad.style.display = "";
+        btnLoad.style.display = "";
           
         const { height: cardHeight } = document
           .querySelector('.gallery')
@@ -58,9 +57,9 @@ refs.btnSearch.addEventListener('click', e => {
   }
 });
 
-refs.btnLoad.addEventListener('click', () => {
+btnLoad.addEventListener('click', () => {
     page += 1
-    searchInput = refs.input.value.trim();
+    searchInput = input.value.trim();
     pixabayAPI(searchInput, page, perPage)
         .then(data => {
             createGallery(data.hits);
@@ -76,5 +75,5 @@ refs.btnLoad.addEventListener('click', () => {
 });
 
 function clearGallery() {
-  refs.galerry.innerHTML = '';
+  galerry.innerHTML = '';
 }
