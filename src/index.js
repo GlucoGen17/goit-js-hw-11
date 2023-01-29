@@ -7,9 +7,9 @@ import { createGallery } from './js/Gallery';
 
 
 const input = document.querySelector('.search-form-input');
-const igallery = document.querySelector('.gallery');
-const ibtnSearch = document.querySelector('.search-form-button');
-const ibtnLoad = document.querySelector('.load-more');
+const gallery = document.querySelector('.gallery');
+const btnSearch = document.querySelector('.search-form-button');
+const btnLoad = document.querySelector('.load-more');
 
 
 let gallerySimpleLightbox = new SimpleLightbox('.gallery a');
@@ -75,5 +75,5 @@ btnLoad.addEventListener('click', () => {
 });
 
 function clearGallery() {
-  galerry.innerHTML = '';
+  gallery.innerHTML = '';
 }
