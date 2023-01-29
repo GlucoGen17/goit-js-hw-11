@@ -65,8 +65,7 @@ btnLoad.addEventListener('click', () => {
         .then(data => {
             createGallery(data.hits);
             gallerySimpleLightbox.refresh();
-
-            if (page > data.totalHits / perPage) {
+            if (page >= (data.totalHits / perPage)) {
               Notiflix.Notify.info(
                 "We're sorry, but you've reached the end of search results."
               );
