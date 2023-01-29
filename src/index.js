@@ -36,12 +36,14 @@ btnSearch.addEventListener('click', e => {
           'Sorry, there are no images matching your search query. Please try again.'
         );
         clearGallery();
+        btnLoad.style.display = 'none';
         return;
       } else {
         createGallery(data.hits);
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
         gallerySimpleLightbox.refresh();
         btnLoad.style.display = "";
+        
           
         const { height: cardHeight } = document
           .querySelector('.gallery')
@@ -64,7 +66,7 @@ btnLoad.addEventListener('click', () => {
         .then(data => {
             createGallery(data.hits);
             gallerySimpleLightbox.refresh();
-            // let totalPages = data.totalHits / perPage;
+
             if (page > data.totalHits / perPage) {
               Notiflix.Notify.info(
                 "We're sorry, but you've reached the end of search results."
