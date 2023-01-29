@@ -42,8 +42,9 @@ btnSearch.addEventListener('click', e => {
         createGallery(data.hits);
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
         gallerySimpleLightbox.refresh();
-        btnLoad.style.display = "";
-        
+        if (data.totalHits >= perPage) {
+          btnLoad.style.display = '';
+        }
           
         const { height: cardHeight } = document
           .querySelector('.gallery')
