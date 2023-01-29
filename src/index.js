@@ -25,7 +25,7 @@ refs.btnSearch.addEventListener('click', e => {
   page = 1;
   searchInput = refs.input.value.trim();
   if (!searchInput) {
-    // cleanGallery();
+    clearGallery();
     return;
   } else {
       pixabayAPI(searchInput, page, perPage)
@@ -34,7 +34,7 @@ refs.btnSearch.addEventListener('click', e => {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
-        // clearGallery();
+        clearGallery();
         return;
       } else {
         createGallery(data.hits);
@@ -71,6 +71,6 @@ refs.btnLoad.addEventListener('click', () => {
       .catch(error => console.log(error));
 });
 
-// function clearGallery() {
-//   refs.galerry.innerHTML = '';
-// }
+function clearGallery() {
+  refs.galerry.innerHTML = '';
+}
