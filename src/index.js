@@ -23,10 +23,11 @@ btnLoad.style.display = "none";
 btnSearch.addEventListener('click', e => {
   e.preventDefault();
   page = 1;
+  clearPage();
     searchInput = input.value.trim();
     // refs.btnSearch.classList.add('is-hidden');
   if (!searchInput) {
-    clearPage();
+
     return;
   } else {
       pixabayAPI(searchInput, page, perPage)
@@ -35,10 +36,10 @@ btnSearch.addEventListener('click', e => {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
-        clearPage();
+  
         return;
       } else {
-        clearPage();
+
         createGallery(data.hits);
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
         gallerySimpleLightbox.refresh();
@@ -67,7 +68,8 @@ btnLoad.addEventListener('click', () => {
         .then(data => {
             createGallery(data.hits);
             gallerySimpleLightbox.refresh();
-            if (page >= Math.ceil(data.totalHits / perPage)) {
+          if (page >= Math.ceil(data.totalHits / perPage)) {
+              btnLoad.style.display = 'none';
               Notiflix.Notify.info(
                 "We're sorry, but you've reached the end of search results."
               );
